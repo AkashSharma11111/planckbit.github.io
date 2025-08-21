@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MSP EDUCARE | Trusted Educational Platform</title>
+    <meta name="description" content="MSP EDUCARE - Trusted educational platform offering quality coaching for CA Foundation, Commerce, B.Com, and other professional courses. Download NCERT books, syllabus, and previous year papers.">
+    <meta name="keywords" content="MSP EDUCARE, CA Foundation, Commerce coaching, B.Com coaching, NCERT books, syllabus, previous year papers, education platform">
+    <meta name="author" content="MSP EDUCARE">
+    <title>MSP EDUCARE | Trusted Educational Platform for CA, Commerce & Professional Courses</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -76,7 +79,7 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         nav a {
@@ -154,8 +157,6 @@
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
-            position: absolute;
-            left: 20px;
         }
 
         /* Login Modal */
@@ -974,6 +975,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
             margin-bottom: 3rem;
+            text-align: left;
         }
 
         .footer-col h3 {
@@ -1155,6 +1157,10 @@
             section {
                 padding: 4rem 2rem;
             }
+            
+            .nav-btns {
+                display: none;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1262,7 +1268,7 @@
         </div>
     </div>
 
-       <!-- Floating Buttons -->
+    <!-- Floating Buttons -->
     <div class="floating-btn back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
@@ -1294,13 +1300,11 @@
                 <li><a href="#" class="nav-link" data-page="blog">Blog</a></li>
                 <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
                 <li><a href="#" class="nav-link" data-page="about">About</a></li>
-                <li><a href="#" class="nav-link" data-page="privacy">Privacy Policy</a></li>
             </ul>
         </nav>
         
         <div class="nav-btns">
             <a href="#" class="btn btn-outline" id="loginBtn">Login</a>
-            <a href="#" class="btn btn-primary" id="enrollNowBtn">Enroll Now</a>
         </div>
     </header>
 
@@ -1356,7 +1360,7 @@
             <div class="courses-grid">
                 <div class="card course-card">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="CA Foundation">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="CA Foundation Course">
                     </div>
                     <div class="card-content">
                         <h3>CA Foundation</h3>
@@ -1417,7 +1421,7 @@
             <div class="courses-grid">
                 <div class="card course-card">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="CA Foundation">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="CA Foundation Course">
                     </div>
                     <div class="card-content">
                         <h3>CA Foundation</h3>
@@ -1733,7 +1737,7 @@
                         <ul class="resource-list">
                             <li><a href="https://www.icsi.edu/media/webmodules/SYLLABUS_CS_FOUNDATION_PROGRAMME.pdf"><i class="fas fa-file-pdf"></i> Business Environment</a></li>
                             <li><a href="https://www.icsi.edu/media/webmodules/SYLLABUS_CS_FOUNDATION_PROGRAMME.pdf"><i class="fas fa-file-pdf"></i> Business Management</a></li>
-                            <li><a href="https://www.icsi.edu/media/webmodules/SYLLABUS_CS_FOUNDATION_PROGRAMME.pdf"><i class="fas fa-file-pdf"></i> Economics</a></li>
+                            <li><a href="https://www.icsi.edu/media/webmodules/SYLLABUS_CS_FOUNDATION_PROgramME.pdf"><i class="fas fa-file-pdf"></i> Economics</a></li>
                             <li><a href="https://www.icsi.edu/media/webmodules/SYLLABUS_CS_FOUNDATION_PROGRAMME.pdf"><i class="fas fa-file-pdf"></i> Fundamentals of Accounting</a></li>
                         </ul>
                     </div>
@@ -1757,60 +1761,12 @@
         </section>
     </div>
 
-    <!-- Profile Page -->
-    <div id="profile" class="page-container">
-        <section class="py-2">
-            <div class="section-title">
-                <h2>My Profile</h2>
-                <p>Manage your account and learning progress</p>
-            </div>
-            
-            <div class="profile-container">
-                <div class="profile-header">
-                    <div class="profile-avatar">U</div>
-                    <h2>User Name</h2>
-                    <p>Enrolled Student</p>
-                </div>
-                
-                <div class="profile-body">
-                    <div class="profile-details">
-                        <div class="detail-card">
-                            <h4>Personal Information</h4>
-                            <p><strong>Email:</strong> user@example.com</p>
-                            <p><strong>Phone:</strong> +91 9903950788</p>
-                            <p><strong>Joined:</strong> January 2025</p>
-                        </div>
-                        
-                        <div class="detail-card">
-                            <h4>Enrolled Courses</h4>
-                            <p>CA Foundation</p>
-                            <p>Class 12 Commerce</p>
-                            <p>Business Mathematics</p>
-                        </div>
-                        
-                        <div class="detail-card">
-                            <h4>Learning Progress</h4>
-                            <p><strong>Overall Progress:</strong> 65%</p>
-                            <p><strong>Completed Modules:</strong> 12/20</p>
-                            <p><strong>Upcoming Tests:</strong> 3</p>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mt-2">
-                        <a href="#" class="btn btn-primary">Edit Profile</a>
-                        <a href="#" class="btn btn-outline">Change Password</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    
     <!-- Testimonials Page -->
     <div id="testimonials" class="page-container">
         <section class="testimonials py-2">
             <div class="section-title">
                 <h2>Student Testimonials</h2>
-                <p>Hear what our studets have to say about their learning experience</p>
+                <p>Hear what our students have to say about their learning experience</p>
             </div>
             
             <div class="testimonials-container">
@@ -1887,32 +1843,32 @@
             
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Classroom">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Classroom at MSP EDUCARE">
                     <div class="gallery-caption">Modern Classroom</div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1543269865-0a740d43b90c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lecture">
+                    <img src="https://images.unsplash.com/photo-1543269865-0a740d43b90c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Interactive Lecture at MSP EDUCARE">
                     <div class="gallery-caption">Interactive Lecture</div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1524178239882-9b296da1e9f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Seminar">
+                    <img src="https://images.unsplash.com/photo-1524178239882-9b296da1e9f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Industry Seminar at MSP EDUCARE">
                     <div class="gallery-caption">Industry Seminar</div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Library">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Library at MSP EDUCARE">
                     <div class="gallery-caption">Library</div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Event">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Annual Event at MSP EDUCARE">
                     <div class="gallery-caption">Annual Event</div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Group Study">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Group Study Session at MSP EDUCARE">
                     <div class="gallery-caption">Group Study Session</div>
                 </div>
             </div>
@@ -1930,7 +1886,7 @@
             <div class="blog-grid">
                 <div class="card blog-card">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Study Tips">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Study Tips for Commerce Students">
                     </div>
                     <div class="card-content">
                         <div class="blog-meta">
@@ -1945,7 +1901,7 @@
                 
                 <div class="card blog-card">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="CA Preparation">
+                        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="CA Foundation Preparation">
                     </div>
                     <div class="card-content">
                         <div class="blog-meta">
@@ -1960,7 +1916,7 @@
                 
                 <div class="card blog-card">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Career Options">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Career Options after B.Com">
                     </div>
                     <div class="card-content">
                         <div class="blog-meta">
@@ -2006,8 +1962,8 @@
                         </div>
                         <div class="contact-details">
                             <h3>Phone Number</h3>
-                            <p>+91 98765 43210</p>
-                            <p>+91 98765 43211</p>
+                            <p>+91 9903950788</p>
+                            <p>+91 9339762091</p>
                         </div>
                     </div>
                     
@@ -2076,7 +2032,54 @@
             </div>
             
             <div class="map-container mt-2">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.0555601019323!2d72.83261041490104!3d19.05930698710036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8df0e86e91b%3A0x301e8f1fc28b8e0!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1623745647893!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.0555601019323!2d72.83261041490104!3d19.05930698710036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8df0e86e91b%3A0x301e8f1fc28b8e0!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1623745647893!5m2!1sen!2sin" allowfullscreen="" loading="lazy" title="MSP EDUCARE Location"></iframe>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page-container">
+        <section class="py-2">
+            <div class="section-title">
+                <h2>About MSP EDUCARE</h2>
+                <p>Your trusted partner in educational excellence since 2000</p>
+            </div>
+            
+            <div class="about-content">
+                <div>
+                    <h3>Our Mission</h3>
+                    <p>At MSP EDUCARE, we are committed to providing quality education that empowers students to achieve their academic and professional goals. Our experienced faculty and comprehensive learning resources create an environment conducive to success.</p>
+                    
+                    <h3>Our Approach</h3>
+                    <p>We believe in personalized attention, innovative teaching methodologies, and continuous assessment to ensure every student reaches their full potential. Our curriculum is designed to not only help students excel in exams but also develop practical knowledge.</p>
+                    
+                    <div class="milestones">
+                        <div class="milestone">
+                            <i class="fas fa-user-graduate"></i>
+                            <h3>5000+</h3>
+                            <p>Students Trained</p>
+                        </div>
+                        <div class="milestone">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <h3>50+</h3>
+                            <p>Expert Faculty</p>
+                        </div>
+                        <div class="milestone">
+                            <i class="fas fa-award"></i>
+                            <h3>95%</h3>
+                            <p>Success Rate</p>
+                        </div>
+                        <div class="milestone">
+                            <i class="fas fa-clock"></i>
+                            <h3>20+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="MSP EDUCARE Classroom">
+                </div>
             </div>
         </section>
     </div>
@@ -2088,11 +2091,11 @@
                 <h3>MSP EDUCARE</h3>
                 <p>Trusted & Affordable Educational Platform providing quality coaching for Commerce students since 2000.</p>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/share/18vhNW97YN/" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://t.me/mspeducare" class="social-link"><i class="fab fa-telegram"></i></a>
-                    <a href="https://www.instagram.com/umesbsharma?igsh=YzljYTk1ODg3Zg==" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="https://youtube.com/@mspeducare5901?si=P4NJEAi2pGpkS-iN" class="social-link"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/share/18vhNW97YN/" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://t.me/mspeducare" class="social-link" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="https://www.instagram.com/umesbsharma?igsh=YzljYTk1ODg3Zg==" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@mspeducare5901?si=P4NJEAi2pGpkS-iN" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             
@@ -2113,7 +2116,7 @@
                     <li><i class="fas fa-map-marker-alt"></i> 123 Education Street, Mumbai</li>
                     <li><i class="fas fa-phone-alt"></i> +91 9903950788</li>
                     <li><i class="fas fa-envelope"></i> info@mspeducare.com</li>
-                    <li><i class="fas fa-clock"></i> Mon-Sat: 8:00 AM - 10:00 PM</li>
+                    <li><i class="fas fa-clock"></i> Mon-Sat: 8:00 AM - 8:00 PM</li>
                 </ul>
             </div>
         </div>
@@ -2137,9 +2140,6 @@
             const closeModals = document.querySelectorAll('.close-modal');
             const showRegister = document.getElementById('showRegister');
             const showLogin = document.getElementById('showLogin');
-            const profileSection = document.getElementById('profileSection');
-            const profilePic = document.getElementById('profilePic');
-            const logoutBtn = document.getElementById('logoutBtn');
             
             // Check if user is logged in
             let isLoggedIn = false;
@@ -2235,8 +2235,8 @@
                 loginForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     isLoggedIn = true;
-                    updateLoginState();
                     loginModal.style.display = 'none';
+                    alert('Login successful!');
                 });
             }
             
@@ -2245,8 +2245,8 @@
                 registerForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     isLoggedIn = true;
-                    updateLoginState();
                     registerModal.style.display = 'none';
+                    alert('Registration successful!');
                 });
             }
             
@@ -2258,37 +2258,7 @@
                     contactForm.reset();
                 });
             }
-            
-            // Profile functionality
-            profilePic.addEventListener('click', function() {
-                profileSection.classList.toggle('active');
-            });
-            
-            logoutBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                isLoggedIn = false;
-                updateLoginState();
-                // Navigate to home page
-                document.querySelectorAll('.page-container').forEach(page => {
-                    page.classList.remove('active-page');
-                });
-                document.getElementById('home').classList.add('active-page');
-            });
-            
-            // Update login state
-            function updateLoginState() {
-                if (isLoggedIn) {
-                    loginBtn.style.display = 'none';
-                    profileSection.style.display = 'flex';
-                } else {
-                    loginBtn.style.display = 'inline-block';
-                    profileSection.style.display = 'none';
-                }
-            }
-            
-            // Initialize
-            updateLoginState();
         });
     </script>
 </body>
-        </html>
+</html>
