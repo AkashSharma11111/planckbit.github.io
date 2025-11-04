@@ -16,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        /* --- CSS Styles (Fixed and improved) --- */
+        /* --- CSS Styles (Optimized with Performance and UI Improvements) --- */
         :root {
             --primary-bg: #0F172A;
             --secondary-bg: #1E293B;
@@ -32,233 +32,1363 @@
             --danger-color: #EF4444;
             --warning-color: #F59E0B;
             --info-color: #3B82F6;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { font-size: 16px; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--primary-bg); color: var(--text-primary); padding-top: 70px; padding-bottom: 75px; min-height: 100vh; overscroll-behavior-y: contain; }
-        a { color: var(--accent-color); text-decoration: none; } 
-        a:hover { color: #FBBF24; }
-        
-        .main-content { padding: 15px; } 
-        .section { display: none; animation: fadeIn 0.3s ease-in-out; } 
-        .section.active { display: block; } 
-        
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(10px); } 
-            to { opacity: 1; transform: translateY(0); } 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
         }
         
-        .section-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; color: var(--text-primary); } 
-        .custom-card { background-color: var(--card-bg); border-radius: 10px; padding: 15px; margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid var(--border-color); } 
+        html { 
+            font-size: 16px; 
+            scroll-behavior: smooth;
+        }
         
-        .btn-custom { border-radius: 6px; font-size: 0.9rem; font-weight: 500; padding: 8px 15px; border: none; display: inline-flex; align-items: center; justify-content: center; gap: 5px; transition: background-color 0.2s ease, filter 0.2s ease; } 
-        .btn-custom-primary { background-color: var(--primary-button-bg); color: var(--text-primary); } 
-        .btn-custom-primary:hover { background-color: #2563EB; } 
-        .btn-custom-secondary { background-color: var(--secondary-bg); color: var(--text-primary); border: 1px solid var(--border-color); } 
-        .btn-custom-secondary:hover { background-color: #334155; } 
-        .btn-custom-accent { background: var(--accent-gradient); color: var(--primary-bg); font-weight: 600; } 
-        .btn-custom-accent:hover { filter: brightness(1.1); } 
-        .btn-custom-link { background: none; border: none; color: var(--primary-button-bg); font-size: 0.9rem; font-weight: 500; padding: 0; cursor: pointer; } 
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--primary-bg); 
+            color: var(--text-primary); 
+            padding-top: 70px; 
+            padding-bottom: 75px; 
+            min-height: 100vh; 
+            overscroll-behavior-y: contain; 
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
         
-        .text-accent { color: var(--accent-color); } 
-        .text-success { color: var(--success-color); } 
-        .text-danger { color: var(--danger-color); } 
-        .text-warning { color: var(--warning-color); } 
-        
-        .form-control { background-color: var(--primary-bg); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 6px; } 
-        .form-control:focus { background-color: var(--primary-bg); border-color: var(--accent-color); color: var(--text-primary); box-shadow: 0 0 0 0.2rem rgba(250, 204, 21, 0.25); } 
-        .form-control::placeholder { color: var(--text-secondary); opacity: 0.7; } 
-        .form-label { color: var(--text-secondary); font-size: 0.9rem; } 
-        
-        .alert { border-radius: 6px; font-size: 0.9rem; } 
-        
-        .list-group-item { background-color: var(--card-bg); color: var(--text-primary); border: none; border-bottom: 1px solid var(--border-color); padding: 15px; font-size: 0.95rem; transition: background-color 0.2s ease; } 
-        .list-group-item:hover { background-color: rgba(255, 255, 255, 0.05); } 
-        .list-group-item:last-child { border-bottom: none; } 
-        .list-group-item i:first-child { color: var(--accent-color); margin-right: 15px; font-size: 1.1rem; width: 20px; text-align: center; } 
-        .list-group-item .bi-chevron-right { color: var(--text-secondary); font-size: 0.9rem; } 
-        
-        #globalLoaderEl { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 9999; display: none; } 
-        .spinner-border { color: var(--accent-color); width: 3rem; height: 3rem; } 
-        
-        .placeholder-glow .placeholder { background-color: rgba(51, 65, 85, 0.5); animation: placeholder-glow 2s ease-in-out infinite; } 
-        .placeholder { background-color: rgba(51, 65, 85, 0.5); border-radius: 4px; } 
-        
-        @keyframes placeholder-glow { 
-            0% { background-color: rgba(51, 65, 85, 0.5); } 
-            50% { background-color: rgba(51, 65, 85, 0.7); } 
-            100% { background-color: rgba(51, 65, 85, 0.5); } 
+        a { 
+            color: var(--accent-color); 
+            text-decoration: none; 
         } 
         
-        .interactive-list-item { cursor: pointer; } 
-        .referral-code { font-family: monospace; letter-spacing: 1px; user-select: all; } 
-        
-        .app-header { position: fixed; top: 0; left: 0; width: 100%; height: 60px; background-color: var(--secondary-bg); display: flex; align-items: center; justify-content: space-between; padding: 0 15px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000; border-bottom: 1px solid var(--border-color); } 
-        .header-left { display: flex; align-items: center; gap: 10px; } 
-        .header-logo { width: 40px; height: 40px; border-radius: 50%; background-color: #fff; object-fit: cover; border: 1px solid var(--accent-color); } 
-        .header-title { font-size: 0.9rem; font-weight: 500; line-height: 1.2; } 
-        .header-title span { font-size: 0.75rem; color: var(--text-secondary); display: block; } 
-        .header-back-button { background: none; border: none; color: var(--text-primary); font-size: 1.4rem; margin-right: 5px; display: none; padding: 5px; } 
-        .header-right { display: flex; align-items: center; gap: 15px; } 
-        .notification-icon { font-size: 1.3rem; color: var(--text-primary); position: relative; background: none; border: none; padding: 0; } 
-        .notification-badge { position: absolute; top: -3px; right: -5px; background-color: var(--danger-color); color: white; font-size: 0.6rem; width: 15px; height: 15px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; } 
-        .wallet-chip { background: var(--accent-gradient); color: var(--primary-bg); padding: 5px 12px; border-radius: 20px; display: flex; align-items: center; font-size: 0.85rem; font-weight: 700; border: none; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); cursor: pointer; } 
-        .wallet-chip i { margin-right: 5px; font-size: 0.9rem; } 
-        .header-game-title { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-left: 10px; display: none; } 
-        
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; background-color: var(--bottom-nav-bg); display: flex; justify-content: space-around; align-items: stretch; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); z-index: 1000; border-top: 1px solid var(--border-color); } 
-        .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-secondary); text-decoration: none; flex-grow: 1; padding: 8px 0; transition: color 0.2s ease, background-color 0.2s ease; border: none; background: none; cursor: pointer; font-size: 0.7rem; } 
-        .nav-item i { font-size: 1.4rem; margin-bottom: 4px; line-height: 1; } 
-        .nav-item span { font-size: 0.7rem; font-weight: 500; line-height: 1; } 
-        .nav-item.active { color: var(--accent-color); background-color: rgba(250, 204, 21, 0.1); } 
-        
-        .swiper-container#promotionSliderEl { width: 100%; height: 200px; border-radius: 10px; margin-bottom: 25px; --swiper-pagination-color: var(--accent-color); --swiper-pagination-bullet-inactive-color: var(--text-secondary); --swiper-pagination-bullet-size: 8px; } 
-        .swiper-slide { background-color: var(--secondary-bg); border-radius: 10px; } 
-        .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 10px; } 
-        
-        .game-card { text-align: center; background-color: var(--card-bg); border-radius: 8px; overflow: hidden; padding: 0; border: 1px solid var(--border-color); cursor: pointer; transition: transform 0.2s ease; } 
-        .game-card:hover { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); } 
-        .game-card img { width: 100%; height: 130px; object-fit: cover; display: block; } 
-        .game-card span { display: block; padding: 10px 5px; font-weight: 500; font-size: 0.9rem; color: var(--text-primary); } 
-        
-        .tournament-tabs { display: flex; justify-content: space-around; background-color: var(--secondary-bg); padding: 5px; border-radius: 8px; margin-bottom: 15px; } 
-        .tab-item { color: var(--text-secondary); background: none; border: none; padding: 8px 10px; font-size: 0.85rem; font-weight: 600; border-radius: 6px; flex-grow: 1; text-align: center; cursor: pointer; transition: background-color 0.2s, color 0.2s; } 
-        .tab-item.active { background-color: var(--primary-button-bg); color: var(--text-primary); } 
-        .tab-item i { margin-right: 5px; } 
-        
-        .tournament-card { background-color: var(--card-bg); border-radius: 12px; margin-bottom: 15px; padding: 15px; border: 1px solid var(--border-color); } 
-        .tournament-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 5px; } 
-        .tournament-card-tags span { background-color: var(--primary-bg); color: var(--text-secondary); font-size: 0.7rem; font-weight: 500; padding: 3px 8px; border-radius: 4px; display: inline-block; border: 1px solid var(--border-color); margin-right: 4px; margin-bottom: 4px; } 
-        .tournament-card-timer { background-color: rgba(255, 255, 255, 0.1); color: var(--text-primary); font-size: 0.75rem; font-weight: 600; padding: 3px 8px; border-radius: 4px; } 
-        .tournament-card-title { font-size: 1rem; font-weight: 600; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; color: var(--text-primary); } 
-        .tournament-card-title i { color: var(--accent-color); } 
-        .tournament-card-info { display: flex; justify-content: space-between; align-items: stretch; border-top: 1px dashed var(--border-color); border-bottom: 1px dashed var(--border-color); padding: 10px 0; margin: 10px 0; font-size: 0.8rem; } 
-        .info-item { text-align: center; flex: 1; padding: 0 5px; } 
-        .info-item span { display: block; color: var(--text-secondary); font-size: 0.7rem; margin-bottom: 2px; } 
-        .info-item strong { color: var(--text-primary); font-weight: 600; font-size: 0.9rem; } 
-        .info-item .prize-icon { color: var(--accent-color); font-size: 1.2rem; } 
-        .tournament-card-spots { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 15px; } 
-        .tournament-card-spots span { font-weight: 600; } 
-        .progress { height: 6px; background-color: var(--primary-bg); border-radius: 3px; overflow: hidden; } 
-        .progress-bar { background-color: var(--warning-color); transition: width 0.3s ease; } 
-        .tournament-card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; } 
-        .tournament-card-actions .btn-sm { padding: 8px 10px; font-size: 0.85rem; width: 100%; } 
-        .tournament-card-actions .btn-join { background: var(--accent-gradient); color: var(--primary-bg); font-weight: 600; grid-column: 2 / 3; } 
-        .tournament-card-actions .btn-details { background-color: var(--secondary-bg); border: 1px solid var(--border-color); grid-column: 1 / 2; } 
-        .tournament-card-actions .btn-joined { background-color: var(--success-color); color: var(--text-primary); opacity: 0.8; grid-column: 2 / 3; } 
-        .tournament-card-actions .btn-disabled { background-color: var(--secondary-bg); opacity: 0.6; cursor: not-allowed; grid-column: 2 / 3; } 
-        
-        .btn-idpass { background: var(--accent-gradient); color: var(--primary-bg); border: none; font-weight: 600; } 
-        
-        .wallet-card { background: linear-gradient(145deg, var(--secondary-bg), var(--primary-bg)); border-radius: 10px; padding: 20px; border: 1px solid var(--border-color); } 
-        .wallet-card h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 25px; } 
-        .balance-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); } 
-        .balance-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; } 
-        .balance-item-label { font-size: 0.95rem; color: var(--text-secondary); } 
-        .balance-item-value { font-size: 1.1rem; font-weight: 600; } 
-        .balance-item-action { min-width: 100px; text-align: right; } 
-        .balance-item-action .btn-custom-link { font-size: 0.85rem; color: var(--accent-color); padding: 5px; } 
-        .balance-item-action .btn-withdraw { background-color: var(--primary-button-bg); color: #fff; font-size: 0.8rem; padding: 5px 12px; border-radius: 5px; border: none; } 
-        
-        #recentTransactionsListEl .custom-card { background-color: var(--secondary-bg); } 
-        #earnings-section .custom-card { text-align: center; } 
-        #earnings-section .display-4 { font-size: 3rem; } 
-        #earnings-section p strong { color: var(--text-primary); } 
-        
-        .profile-header-card { background: linear-gradient(145deg, var(--secondary-bg), var(--primary-bg)); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 20px; border: 1px solid var(--border-color); } 
-        .profile-avatar { width: 70px; height: 70px; border-radius: 50%; margin-bottom: 10px; border: 2px solid var(--accent-color); object-fit: cover; background-color: var(--primary-bg); } 
-        .profile-name { font-size: 1.1rem; font-weight: 600; margin-bottom: 2px; } 
-        .profile-email { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; word-break: break-all; } 
-        .profile-stats { display: flex; justify-content: space-around; width: 100%; border-top: 1px solid var(--border-color); padding-top: 15px; } 
-        .stat-item { text-align: center; flex: 1; } 
-        .stat-item strong { display: block; font-size: 1rem; font-weight: 600; } 
-        .stat-item span { font-size: 0.75rem; color: var(--text-secondary); } 
-        
-        .profile-links .list-group { border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); } 
-        .profile-links .form-switch .form-check-input { background-color: var(--secondary-bg); border-color: var(--border-color); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255, 255, 255, 0.25%29'/%3e%3c/svg%3e"); } 
-        .profile-links .form-switch .form-check-input:checked { background-color: var(--accent-color); border-color: var(--accent-color); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e"); } 
-        
-        #login-section { margin-top: 5vh; } 
-        #login-section .card { background-color: var(--card-bg); border: 1px solid var(--border-color); } 
-        #login-section .btn-primary { background-color: var(--primary-button-bg); border: none; } 
-        #login-section .btn-link { background: none; border: none; color: var(--accent-color); text-decoration: none; font-size: 0.9em; padding: 5px 0; } 
-        #login-section .btn-link:hover { text-decoration: underline; } 
-        #login-section .btn-success { background-color: var(--success-color); border: none; } 
-        #login-section .btn-danger { background-color: var(--danger-color); border: none; } 
-        #login-section .form-divider { text-align: center; margin: 20px 0; position: relative; color: var(--text-secondary); } 
-        #login-section .form-divider::before, #login-section .form-divider::after { content: ""; position: absolute; top: 50%; width: 40%; height: 1px; background-color: var(--border-color); } 
-        #login-section .form-divider::before { left: 0; } 
-        #login-section .form-divider::after { right: 0; } 
-        #login-section .form-divider span { background-color: var(--card-bg); padding: 0 10px; position: relative; z-index: 1; font-size: 0.8rem; font-weight: 500; } 
-        #login-section .card-title { color: var(--text-primary); } 
-        #googleSignInBtnMainEl { display: none; } 
-        
-        .modal-content { background-color: var(--secondary-bg); color: var(--text-primary); border: 1px solid var(--border-color); } 
-        .modal-header { border-bottom-color: var(--border-color); } 
-        .modal-footer { border-top-color: var(--border-color); } 
-        .btn-close-white { filter: invert(1) grayscale(100%) brightness(200%); } 
-        .modal-body .phonepe-number { color: var(--warning-color); font-weight: bold; user-select: text; } 
-        
-        #matchDetailsModalBodyEl pre { background-color: var(--primary-bg); padding: 10px; border-radius: 5px; border: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.85rem; white-space: pre-wrap; word-wrap: break-word; } 
-        #policyModalBodyEl { line-height: 1.6; font-size: 0.95rem; white-space: pre-wrap; } 
-        #idPasswordModalEl .copy-btn { padding: 2px 6px; font-size: 0.8rem; margin-left: 8px; vertical-align: middle; } 
-        #policyModalBodyEl .copy-btn, #policyModalBodyEl #shareReferralBtn { padding: 4px 10px; font-size: 0.9rem; } 
-        #policyModalBodyEl #shareReferralBtn i, #policyModalBodyEl .copy-btn i { margin-right: 5px; } 
-        
-        #securityWarning { background-color: var(--danger-color); color: white; padding: 10px 15px; text-align: center; font-size: 0.9rem; position: sticky; top: 60px; z-index: 999; border-bottom: 1px solid #a51d1d; } 
-        #securityWarning a { color: #ffdddd; text-decoration: underline; } 
-        #securityWarning button { background: none; border: 1px solid white; color: white; padding: 2px 8px; margin-left: 15px; font-size: 0.8rem; border-radius: 4px; cursor: pointer; }
-        
-        /* Fix for tournament card layout issues */
-        .tournament-card-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 10px;
+        a:hover { 
+            color: #FBBF24; 
         }
         
-        .tournament-card-actions .btn {
+        .main-content { 
+            padding: 15px; 
+            max-width: 100%;
+            overflow-x: hidden;
+        } 
+        
+        .section { 
+            display: none; 
+            animation: fadeIn 0.3s ease-in-out; 
             width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        } 
+        
+        .section.active { 
+            display: block; 
+        } 
+        
+        @keyframes fadeIn { 
+            from { 
+                opacity: 0; 
+                transform: translateY(10px); 
+            } 
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            } 
         }
         
-        /* Fix for wallet balance display */
-        .balance-item-value {
-            font-size: 1.1rem;
-            font-weight: 600;
-            min-width: 80px;
-            text-align: right;
+        .section-title { 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            margin-bottom: 15px; 
+            color: var(--text-primary); 
+            text-shadow: var(--shadow-sm);
+        } 
+        
+        .custom-card { 
+            background-color: var(--card-bg); 
+            border-radius: 10px; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color); 
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        } 
+        
+        .custom-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
         }
         
-        /* Fix for button states */
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+        .btn-custom { 
+            border-radius: 6px; 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+            padding: 8px 15px; 
+            border: none; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 5px; 
+            transition: background-color 0.2s ease, filter 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease; 
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        .btn-custom:active {
+            transform: scale(0.98);
         }
         
-        /* Fix for modal responsiveness */
-        @media (max-width: 576px) {
-            .modal-dialog {
-                margin: 10px;
-            }
+        .btn-custom-primary { 
+            background-color: var(--primary-button-bg); 
+            color: var(--text-primary); 
+        } 
+        
+        .btn-custom-primary:hover { 
+            background-color: #2563EB; 
+            box-shadow: var(--shadow-md);
+        } 
+        
+        .btn-custom-secondary { 
+            background-color: var(--secondary-bg); 
+            color: var(--text-primary); 
+            border: 1px solid var(--border-color); 
+        } 
+        
+        .btn-custom-secondary:hover { 
+            background-color: #334155; 
+            box-shadow: var(--shadow-md);
+        } 
+        
+        .btn-custom-accent { 
+            background: var(--accent-gradient); 
+            color: var(--primary-bg); 
+            font-weight: 600; 
+        } 
+        
+        .btn-custom-accent:hover { 
+            filter: brightness(1.1); 
+            box-shadow: var(--shadow-md);
+        } 
+        
+        .btn-custom-link { 
+            background: none; 
+            border: none; 
+            color: var(--primary-button-bg); 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+            padding: 0; 
+            cursor: pointer; 
+            box-shadow: none;
+        } 
+        
+        .btn-custom-link:hover {
+            text-decoration: underline;
+            box-shadow: none;
+            transform: none;
         }
         
-        /* Fix for header layout */
-        .header-left {
+        .text-accent { 
+            color: var(--accent-color); 
+        } 
+        
+        .text-success { 
+            color: var(--success-color); 
+        } 
+        
+        .text-danger { 
+            color: var(--danger-color); 
+        } 
+        
+        .text-warning { 
+            color: var(--warning-color); 
+        }
+        
+        .form-control { 
+            background-color: var(--primary-bg); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-primary); 
+            border-radius: 6px; 
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        .form-control:focus { 
+            background-color: var(--primary-bg); 
+            border-color: var(--accent-color); 
+            color: var(--text-primary); 
+            box-shadow: 0 0 0 0.2rem rgba(250, 204, 21, 0.25); 
+        } 
+        
+        .form-control::placeholder { 
+            color: var(--text-secondary); 
+            opacity: 0.7; 
+        } 
+        
+        .form-label { 
+            color: var(--text-secondary); 
+            font-size: 0.9rem; 
+        } 
+        
+        .alert { 
+            border-radius: 6px; 
+            font-size: 0.9rem; 
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        .list-group-item { 
+            background-color: var(--card-bg); 
+            color: var(--text-primary); 
+            border: none; 
+            border-bottom: 1px solid var(--border-color); 
+            padding: 15px; 
+            font-size: 0.95rem; 
+            transition: background-color 0.2s ease; 
+        } 
+        
+        .list-group-item:hover { 
+            background-color: rgba(255, 255, 255, 0.05); 
+        } 
+        
+        .list-group-item:last-child { 
+            border-bottom: none; 
+        } 
+        
+        .list-group-item i:first-child { 
+            color: var(--accent-color); 
+            margin-right: 15px; 
+            font-size: 1.1rem; 
+            width: 20px; 
+            text-align: center; 
+        } 
+        
+        .list-group-item .bi-chevron-right { 
+            color: var(--text-secondary); 
+            font-size: 0.9rem; 
+        } 
+        
+        #globalLoaderEl { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 0, 0, 0.6); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 9999; 
+            display: none; 
+        } 
+        
+        .spinner-border { 
+            color: var(--accent-color); 
+            width: 3rem; 
+            height: 3rem; 
+        } 
+        
+        .placeholder-glow .placeholder { 
+            background-color: rgba(51, 65, 85, 0.5); 
+            animation: placeholder-glow 2s ease-in-out infinite; 
+        } 
+        
+        .placeholder { 
+            background-color: rgba(51, 65, 85, 0.5); 
+            border-radius: 4px; 
+        } 
+        
+        @keyframes placeholder-glow { 
+            0% { 
+                background-color: rgba(51, 65, 85, 0.5); 
+            } 
+            50% { 
+                background-color: rgba(51, 65, 85, 0.7); 
+            } 
+            100% { 
+                background-color: rgba(51, 65, 85, 0.5); 
+            } 
+        } 
+        
+        .interactive-list-item { 
+            cursor: pointer; 
+        } 
+        
+        .referral-code { 
+            font-family: monospace; 
+            letter-spacing: 1px; 
+            user-select: all; 
+        } 
+        
+        .app-header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 60px; 
+            background-color: var(--secondary-bg); 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 15px; 
+            box-shadow: var(--shadow-lg);
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border-color); 
+        } 
+        
+        .header-left { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
             flex: 1;
-            min-width: 0; /* Allow text truncation */
-        }
+            min-width: 0;
+        } 
         
-        .header-title {
+        .header-logo { 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            background-color: #fff; 
+            object-fit: cover; 
+            border: 1px solid var(--accent-color); 
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        .header-title { 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+            line-height: 1.2; 
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        } 
+        
+        .header-title span { 
+            font-size: 0.75rem; 
+            color: var(--text-secondary); 
+            display: block; 
+        } 
+        
+        .header-back-button { 
+            background: none; 
+            border: none; 
+            color: var(--text-primary); 
+            font-size: 1.4rem; 
+            margin-right: 5px; 
+            display: none; 
+            padding: 5px; 
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        } 
+        
+        .header-back-button:hover {
+            color: var(--accent-color);
         }
         
-        /* Fix for game cards on small screens */
-        @media (max-width: 400px) {
+        .header-right { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            flex-shrink: 0;
+        } 
+        
+        .notification-icon { 
+            font-size: 1.3rem; 
+            color: var(--text-primary); 
+            position: relative; 
+            background: none; 
+            border: none; 
+            padding: 0; 
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        } 
+        
+        .notification-icon:hover {
+            color: var(--accent-color);
+        }
+        
+        .notification-badge { 
+            position: absolute; 
+            top: -3px; 
+            right: -5px; 
+            background-color: var(--danger-color); 
+            color: white; 
+            font-size: 0.6rem; 
+            width: 15px; 
+            height: 15px; 
+            border-radius: 50%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-weight: bold; 
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        .wallet-chip { 
+            background: var(--accent-gradient); 
+            color: var(--primary-bg); 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+            display: flex; 
+            align-items: center; 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            border: none; 
+            box-shadow: var(--shadow-md);
+            cursor: pointer; 
+            flex-shrink: 0;
+            transition: transform 0.1s ease;
+        } 
+        
+        .wallet-chip:active {
+            transform: scale(0.95);
+        }
+        
+        .wallet-chip i { 
+            margin-right: 5px; 
+            font-size: 0.9rem; 
+        } 
+        
+        .header-game-title { 
+            font-size: 1rem; 
+            font-weight: 600; 
+            color: var(--text-primary); 
+            margin-left: 10px; 
+            display: none; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        } 
+        
+        .bottom-nav { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 65px; 
+            background-color: var(--bottom-nav-bg); 
+            display: flex; 
+            justify-content: space-around; 
+            align-items: stretch; 
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); 
+            z-index: 1000; 
+            border-top: 1px solid var(--border-color); 
+        } 
+        
+        .nav-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            color: var(--text-secondary); 
+            text-decoration: none; 
+            flex-grow: 1; 
+            padding: 8px 0; 
+            transition: color 0.2s ease, background-color 0.2s ease; 
+            border: none; 
+            background: none; 
+            cursor: pointer; 
+            font-size: 0.7rem; 
+            min-width: 0;
+        } 
+        
+        .nav-item i { 
+            font-size: 1.4rem; 
+            margin-bottom: 4px; 
+            line-height: 1; 
+            transition: transform 0.2s ease;
+        } 
+        
+        .nav-item span { 
+            font-size: 0.7rem; 
+            font-weight: 500; 
+            line-height: 1; 
+        } 
+        
+        .nav-item.active { 
+            color: var(--accent-color); 
+            background-color: rgba(250, 204, 21, 0.1); 
+        }
+        
+        .nav-item.active i {
+            transform: scale(1.1);
+        }
+        
+        /* Fixed Promotion Slider */
+        .promotion-slider-container {
+            width: 100%;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .swiper-container { 
+            width: 100%; 
+            height: 180px; 
+            border-radius: 10px; 
+            --swiper-pagination-color: var(--accent-color); 
+            --swiper-pagination-bullet-inactive-color: var(--text-secondary); 
+            --swiper-pagination-bullet-size: 8px; 
+        } 
+        
+        .swiper-slide { 
+            background-color: var(--secondary-bg); 
+            border-radius: 10px; 
+            overflow: hidden;
+        } 
+        
+        .swiper-slide img { 
+            display: block; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 10px; 
+        } 
+        
+        .game-card { 
+            text-align: center; 
+            background-color: var(--card-bg); 
+            border-radius: 8px; 
+            overflow: hidden; 
+            padding: 0; 
+            border: 1px solid var(--border-color); 
+            cursor: pointer; 
+            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        .game-card:hover { 
+            transform: translateY(-3px); 
+            box-shadow: var(--shadow-lg);
+        } 
+        
+        .game-card img { 
+            width: 100%; 
+            height: 130px; 
+            object-fit: cover; 
+            display: block; 
+            flex-shrink: 0;
+        } 
+        
+        .game-card span { 
+            display: block; 
+            padding: 10px 5px; 
+            font-weight: 500; 
+            font-size: 0.9rem; 
+            color: var(--text-primary); 
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        } 
+        
+        .tournament-tabs { 
+            display: flex; 
+            justify-content: space-around; 
+            background-color: var(--secondary-bg); 
+            padding: 5px; 
+            border-radius: 8px; 
+            margin-bottom: 15px; 
+            width: 100%;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        .tab-item { 
+            color: var(--text-secondary); 
+            background: none; 
+            border: none; 
+            padding: 8px 10px; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            border-radius: 6px; 
+            flex-grow: 1; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: background-color 0.2s, color 0.2s; 
+            white-space: nowrap;
+            min-width: 0;
+        } 
+        
+        .tab-item.active { 
+            background-color: var(--primary-button-bg); 
+            color: var(--text-primary); 
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        .tab-item i { 
+            margin-right: 5px; 
+        } 
+        
+        .tournament-card { 
+            background-color: var(--card-bg); 
+            border-radius: 12px; 
+            margin-bottom: 15px; 
+            padding: 15px; 
+            border: 1px solid var(--border-color); 
+            width: 100%;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        } 
+        
+        .tournament-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        
+        .tournament-card-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            margin-bottom: 10px; 
+            flex-wrap: wrap; 
+            gap: 5px; 
+            width: 100%;
+        } 
+        
+        .tournament-card-tags { 
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            flex: 1;
+        }
+        
+        .tournament-card-tags span { 
+            background-color: var(--primary-bg); 
+            color: var(--text-secondary); 
+            font-size: 0.7rem; 
+            font-weight: 500; 
+            padding: 3px 8px; 
+            border-radius: 4px; 
+            display: inline-block; 
+            border: 1px solid var(--border-color); 
+            white-space: nowrap;
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        .tournament-card-timer { 
+            background-color: rgba(255, 255, 255, 0.1); 
+            color: var(--text-primary); 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            padding: 3px 8px; 
+            border-radius: 4px; 
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        .tournament-card-title { 
+            font-size: 1rem; 
+            font-weight: 600; 
+            margin-bottom: 5px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            color: var(--text-primary); 
+            width: 100%;
+        } 
+        
+        .tournament-card-title i { 
+            color: var(--accent-color); 
+            flex-shrink: 0;
+        } 
+        
+        .tournament-card-info { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: stretch; 
+            border-top: 1px dashed var(--border-color); 
+            border-bottom: 1px dashed var(--border-color); 
+            padding: 10px 0; 
+            margin: 10px 0; 
+            font-size: 0.8rem; 
+            width: 100%;
+        } 
+        
+        .info-item { 
+            text-align: center; 
+            flex: 1; 
+            padding: 0 5px; 
+            min-width: 0;
+        } 
+        
+        .info-item span { 
+            display: block; 
+            color: var(--text-secondary); 
+            font-size: 0.7rem; 
+            margin-bottom: 2px; 
+            white-space: nowrap;
+        } 
+        
+        .info-item strong { 
+            color: var(--text-primary); 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        } 
+        
+        .info-item .prize-icon { 
+            color: var(--accent-color); 
+            font-size: 1.2rem; 
+        } 
+        
+        .tournament-card-spots { 
+            font-size: 0.8rem; 
+            color: var(--text-secondary); 
+            margin-bottom: 15px; 
+            width: 100%;
+        } 
+        
+        .tournament-card-spots span { 
+            font-weight: 600; 
+        } 
+        
+        .progress { 
+            height: 6px; 
+            background-color: var(--primary-bg); 
+            border-radius: 3px; 
+            overflow: hidden; 
+            width: 100%;
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        .progress-bar { 
+            background-color: var(--warning-color); 
+            transition: width 0.3s ease; 
+        } 
+        
+        .tournament-card-actions { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            margin-top: 10px; 
+            width: 100%;
+        } 
+        
+        .tournament-card-actions .btn-sm { 
+            padding: 8px 10px; 
+            font-size: 0.85rem; 
+            width: 100%; 
+            min-width: 0;
+        } 
+        
+        .tournament-card-actions .btn-join { 
+            background: var(--accent-gradient); 
+            color: var(--primary-bg); 
+            font-weight: 600; 
+            grid-column: 2 / 3; 
+        } 
+        
+        .tournament-card-actions .btn-details { 
+            background-color: var(--secondary-bg); 
+            border: 1px solid var(--border-color); 
+            grid-column: 1 / 2; 
+        } 
+        
+        .tournament-card-actions .btn-joined { 
+            background-color: var(--success-color); 
+            color: var(--text-primary); 
+            opacity: 0.8; 
+            grid-column: 2 / 3; 
+        } 
+        
+        .tournament-card-actions .btn-disabled { 
+            background-color: var(--secondary-bg); 
+            opacity: 0.6; 
+            cursor: not-allowed; 
+            grid-column: 2 / 3; 
+        } 
+        
+        .btn-idpass { 
+            background: var(--accent-gradient); 
+            color: var(--primary-bg); 
+            border: none; 
+            font-weight: 600; 
+            width: 100%;
+        } 
+        
+        .wallet-card { 
+            background: linear-gradient(145deg, var(--secondary-bg), var(--primary-bg)); 
+            border-radius: 10px; 
+            padding: 20px; 
+            border: 1px solid var(--border-color); 
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+        } 
+        
+        .wallet-card h2 { 
+            font-size: 1.2rem; 
+            font-weight: 600; 
+            margin-bottom: 25px; 
+        } 
+        
+        .balance-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 20px; 
+            padding-bottom: 15px; 
+            border-bottom: 1px dashed var(--border-color); 
+            width: 100%;
+        } 
+        
+        .balance-item:last-child { 
+            margin-bottom: 0; 
+            border-bottom: none; 
+            padding-bottom: 0; 
+        } 
+        
+        .balance-item-label { 
+            font-size: 0.95rem; 
+            color: var(--text-secondary); 
+            flex: 1;
+        } 
+        
+        .balance-item-value { 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            margin: 0 10px;
+            min-width: 80px;
+            text-align: right;
+        } 
+        
+        .balance-item-action { 
+            min-width: 100px; 
+            text-align: right; 
+            flex-shrink: 0;
+        } 
+        
+        .balance-item-action .btn-custom-link { 
+            font-size: 0.85rem; 
+            color: var(--accent-color); 
+            padding: 5px; 
+        } 
+        
+        .balance-item-action .btn-withdraw { 
+            background-color: var(--primary-button-bg); 
+            color: #fff; 
+            font-size: 0.8rem; 
+            padding: 5px 12px; 
+            border-radius: 5px; 
+            border: none; 
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        #recentTransactionsListEl .custom-card { 
+            background-color: var(--secondary-bg); 
+        } 
+        
+        #earnings-section .custom-card { 
+            text-align: center; 
+            width: 100%;
+        } 
+        
+        #earnings-section .display-4 { 
+            font-size: 3rem; 
+        } 
+        
+        #earnings-section p strong { 
+            color: var(--text-primary); 
+        } 
+        
+        .profile-header-card { 
+            background: linear-gradient(145deg, var(--secondary-bg), var(--primary-bg)); 
+            border-radius: 10px; 
+            padding: 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center; 
+            margin-bottom: 20px; 
+            border: 1px solid var(--border-color); 
+            width: 100%;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        } 
+        
+        .profile-avatar { 
+            width: 70px; 
+            height: 70px; 
+            border-radius: 50%; 
+            margin-bottom: 10px; 
+            border: 2px solid var(--accent-color); 
+            object-fit: cover; 
+            background-color: var(--primary-bg); 
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+        } 
+        
+        .profile-name { 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            margin-bottom: 2px; 
+            width: 100%;
+        } 
+        
+        .profile-email { 
+            font-size: 0.85rem; 
+            color: var(--text-secondary); 
+            margin-bottom: 15px; 
+            word-break: break-all; 
+            width: 100%;
+        } 
+        
+        .profile-stats { 
+            display: flex; 
+            justify-content: space-around; 
+            width: 100%; 
+            border-top: 1px solid var(--border-color); 
+            padding-top: 15px; 
+        } 
+        
+        .stat-item { 
+            text-align: center; 
+            flex: 1; 
+            min-width: 0;
+        } 
+        
+        .stat-item strong { 
+            display: block; 
+            font-size: 1rem; 
+            font-weight: 600; 
+        } 
+        
+        .stat-item span { 
+            font-size: 0.75rem; 
+            color: var(--text-secondary); 
+        } 
+        
+        .profile-links .list-group { 
+            border-radius: 10px; 
+            overflow: hidden; 
+            border: 1px solid var(--border-color); 
+            width: 100%;
+            box-shadow: var(--shadow-md);
+        } 
+        
+        .profile-links .form-switch .form-check-input { 
+            background-color: var(--secondary-bg); 
+            border-color: var(--border-color); 
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255, 255, 255, 0.25%29'/%3e%3c/svg%3e"); 
+        } 
+        
+        .profile-links .form-switch .form-check-input:checked { 
+            background-color: var(--accent-color); 
+            border-color: var(--accent-color); 
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e"); 
+        } 
+        
+        #login-section { 
+            margin-top: 5vh; 
+        } 
+        
+        #login-section .card { 
+            background-color: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-lg);
+        } 
+        
+        #login-section .btn-primary { 
+            background-color: var(--primary-button-bg); 
+            border: none; 
+        } 
+        
+        #login-section .btn-link { 
+            background: none; 
+            border: none; 
+            color: var(--accent-color); 
+            text-decoration: none; 
+            font-size: 0.9em; 
+            padding: 5px 0; 
+        } 
+        
+        #login-section .btn-link:hover { 
+            text-decoration: underline; 
+        } 
+        
+        #login-section .btn-success { 
+            background-color: var(--success-color); 
+            border: none; 
+        } 
+        
+        #login-section .btn-danger { 
+            background-color: var(--danger-color); 
+            border: none; 
+        } 
+        
+        #login-section .form-divider { 
+            text-align: center; 
+            margin: 20px 0; 
+            position: relative; 
+            color: var(--text-secondary); 
+        } 
+        
+        #login-section .form-divider::before, #login-section .form-divider::after { 
+            content: ""; 
+            position: absolute; 
+            top: 50%; 
+            width: 40%; 
+            height: 1px; 
+            background-color: var(--border-color); 
+        } 
+        
+        #login-section .form-divider::before { 
+            left: 0; 
+        } 
+        
+        #login-section .form-divider::after { 
+            right: 0; 
+        } 
+        
+        #login-section .form-divider span { 
+            background-color: var(--card-bg); 
+            padding: 0 10px; 
+            position: relative; 
+            z-index: 1; 
+            font-size: 0.8rem; 
+            font-weight: 500; 
+        } 
+        
+        #login-section .card-title { 
+            color: var(--text-primary); 
+        } 
+        
+        #googleSignInBtnMainEl { 
+            display: none; 
+        } 
+        
+        .modal-content { 
+            background-color: var(--secondary-bg); 
+            color: var(--text-primary); 
+            border: 1px solid var(--border-color); 
+            max-width: 100%;
+            box-shadow: var(--shadow-lg);
+        } 
+        
+        .modal-header { 
+            border-bottom-color: var(--border-color); 
+        } 
+        
+        .modal-footer { 
+            border-top-color: var(--border-color); 
+        } 
+        
+        .btn-close-white { 
+            filter: invert(1) grayscale(100%) brightness(200%); 
+        } 
+        
+        .modal-body .phonepe-number { 
+            color: var(--warning-color); 
+            font-weight: bold; 
+            user-select: text; 
+        } 
+        
+        #matchDetailsModalBodyEl pre { 
+            background-color: var(--primary-bg); 
+            padding: 10px; 
+            border-radius: 5px; 
+            border: 1px solid var(--border-color); 
+            color: var(--text-secondary); 
+            font-size: 0.85rem; 
+            white-space: pre-wrap; 
+            word-wrap: break-word; 
+            max-width: 100%;
+            overflow-x: auto;
+            box-shadow: var(--shadow-sm);
+        } 
+        
+        #policyModalBodyEl { 
+            line-height: 1.6; 
+            font-size: 0.95rem; 
+            white-space: pre-wrap; 
+            max-width: 100%;
+            overflow-x: hidden;
+        } 
+        
+        #idPasswordModalEl .copy-btn { 
+            padding: 2px 6px; 
+            font-size: 0.8rem; 
+            margin-left: 8px; 
+            vertical-align: middle; 
+        } 
+        
+        #policyModalBodyEl .copy-btn, #policyModalBodyEl #shareReferralBtn { 
+            padding: 4px 10px; 
+            font-size: 0.9rem; 
+        } 
+        
+        #policyModalBodyEl #shareReferralBtn i, #policyModalBodyEl .copy-btn i { 
+            margin-right: 5px; 
+        } 
+        
+        #securityWarning { 
+            background-color: var(--danger-color); 
+            color: white; 
+            padding: 10px 15px; 
+            text-align: center; 
+            font-size: 0.9rem; 
+            position: sticky; 
+            top: 60px; 
+            z-index: 999; 
+            border-bottom: 1px solid #a51d1d; 
+            width: 100%;
+            box-shadow: var(--shadow-md);
+        } 
+        
+        #securityWarning a { 
+            color: #ffdddd; 
+            text-decoration: underline; 
+        } 
+        
+        #securityWarning button { 
+            background: none; 
+            border: 1px solid white; 
+            color: white; 
+            padding: 2px 8px; 
+            margin-left: 15px; 
+            font-size: 0.8rem; 
+            border-radius: 4px; 
+            cursor: pointer; 
+        }
+        
+        /* New styles for edit profile */
+        .edit-profile-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .edit-profile-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--accent-color);
+            transform: scale(1.05);
+        }
+        
+        /* Stats improvement */
+        .stat-item strong {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        
+        .stat-item span {
+            font-size: 0.8rem;
+        }
+        
+        /* QR Code Styles */
+        .qr-code-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--primary-bg);
+            border-radius: 10px;
+            width: 100%;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .qr-code-image {
+            max-width: 200px;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .payment-instructions {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        
+        /* Data refresh improvements */
+        .refresh-btn {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .refresh-btn:hover {
+            transform: rotate(90deg);
+        }
+        
+        .refresh-btn:active {
+            transform: rotate(180deg);
+        }
+        
+        /* Tournament Winner Styles */
+        .tournament-winner {
+            background: linear-gradient(145deg, var(--primary-bg), var(--secondary-bg));
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .tournament-winner-icon {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .tournament-winner-details {
+            flex: 1;
+        }
+        
+        .tournament-winner-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--accent-color);
+        }
+        
+        .tournament-winner-prize {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Fix for small screens */
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 10px;
+            }
+            
+            .swiper-container {
+                height: 160px;
+            }
+            
             .game-card span {
                 font-size: 0.8rem;
+                padding: 8px 3px;
+            }
+            
+            .tournament-card {
+                padding: 12px;
+            }
+            
+            .tournament-card-title {
+                font-size: 0.95rem;
+            }
+            
+            .info-item strong {
+                font-size: 0.85rem;
+            }
+            
+            .wallet-card {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .header-title {
+                font-size: 0.8rem;
+            }
+            
+            .header-title span {
+                font-size: 0.7rem;
+            }
+            
+            .wallet-chip {
+                font-size: 0.75rem;
+                padding: 4px 8px;
+            }
+            
+            .tournament-tabs {
+                padding: 3px;
+            }
+            
+            .tab-item {
+                padding: 6px 5px;
+                font-size: 0.75rem;
+            }
+            
+            .tab-item i {
+                margin-right: 3px;
+            }
+        }
+        
+        /* Ensure no horizontal scrolling */
+        body, html {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        .row {
+            margin-left: -8px;
+            margin-right: -8px;
+        }
+        
+        .row > * {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        
+        /* Performance optimizations */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lazy-loaded {
+            opacity: 1;
+        }
+        
+        /* Add winning amount display in profile */
+        .winning-amount {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+        
+        /* Optimize animations */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -283,6 +1413,7 @@
         <div class="header-right">
             <button class="notification-icon" id="notificationBtnEl"> <i class="bi bi-bell-fill"></i> <span class="notification-badge" style="display: none;"></span> </button>
             <button class="wallet-chip" id="headerWalletChipEl" style="display: none;"> <i class="bi bi-wallet-fill"></i> ₹<span id="headerChipBalanceEl">0</span> </button>
+            <button class="refresh-btn" id="refreshDataBtnEl" title="Refresh Data"><i class="bi bi-arrow-clockwise"></i></button>
         </div>
     </header>
 
@@ -292,7 +1423,7 @@
 
         <!-- Login Section -->
         <section id="login-section" class="section active">
-             <div class="container" style="max-width: 450px;">
+             <div class="container">
                 <div class="card shadow-sm custom-card">
                     <div class="card-body p-4">
                         <!-- Login Form -->
@@ -307,10 +1438,11 @@
                         <!-- Signup Form (Initially Hidden) -->
                         <form id="emailSignupForm" style="display: none;">
                             <h2 class="card-title text-center mb-4">Sign Up</h2>
+                            <!-- Name Field Added -->
+                            <div class="mb-3"> <label for="signupNameInputEl" class="form-label">Full Name</label> <input type="text" class="form-control" id="signupNameInputEl" placeholder="Your Name" required> </div>
                             <div class="mb-3"> <label for="signupEmailInputEl" class="form-label">Email</label> <input type="email" class="form-control" id="signupEmailInputEl" placeholder="name@example.com" required> </div>
                             <div class="mb-3"> <label for="signupPasswordInputEl" class="form-label">Password (min 6 chars)</label> <input type="password" class="form-control" id="signupPasswordInputEl" placeholder="Password" required minlength="6"> </div>
                             <div class="mb-3"> <label for="signupConfirmPasswordInputEl" class="form-label">Confirm Password</label> <input type="password" class="form-control" id="signupConfirmPasswordInputEl" placeholder="Confirm Password" required> </div>
-                            <!-- *** REFERRAL CODE INPUT ADDED *** -->
                             <div class="mb-3"> <label for="signupReferralCodeInputEl" class="form-label">Referral Code (Optional)</label> <input type="text" class="form-control" id="signupReferralCodeInputEl" placeholder="Enter referral code"> </div>
                             <div id="signupStatusMessageEl" class="alert mt-3" style="display: none;"></div>
                             <div class="d-grid gap-2 mb-3"> <button type="button" class="btn btn-custom btn-custom-accent" id="signupEmailBtnEl">Sign Up</button> <button type="button" class="btn-custom-link btn-sm p-0 text-center d-block" id="showLoginToggleBtnEl">Already have account? Login</button> </div>
@@ -323,19 +1455,22 @@
 
         <!-- Home Section -->
         <section id="home-section" class="section">
-            <!-- Promotion Slider -->
-            <div class="swiper-container" id="promotionSliderEl">
-                <div class="swiper-wrapper placeholder-glow">
-                    <div class="swiper-slide"><span class="placeholder" style="display: block; width: 100%; height: 100%; border-radius: 10px;"></span></div>
-                 </div>
-                 <div class="swiper-pagination"></div>
+            <!-- Promotion Slider - Fixed -->
+            <div class="promotion-slider-container">
+                <div class="swiper-container" id="promotionSliderEl">
+                    <div class="swiper-wrapper placeholder-glow">
+                        <div class="swiper-slide"><span class="placeholder" style="display: block; width: 100%; height: 100%; border-radius: 10px;"></span></div>
+                     </div>
+                     <div class="swiper-pagination"></div>
+                </div>
             </div>
 
             <!-- Esport Games -->
             <h2 class="section-title">Esport Games</h2>
             <div class="row g-3 mb-4 placeholder-glow" id="gamesListEl">
                 <!-- Placeholder Game Cards -->
-                <div class="col-6"> <div class="game-card custom-card"><span class="placeholder d-block" style="height: 130px; border-top-left-radius: 8px; border-top-right-radius: 8px;"></span><span class="placeholder d-block mt-2 col-8 mx-auto" style="height: 20px;"></span></div> </div> <div class="col-6"> <div class="game-card custom-card"><span class="placeholder d-block" style="height: 130px; border-top-left-radius: 8px; border-top-right-radius: 8px;"></span><span class="placeholder d-block mt-2 col-8 mx-auto" style="height: 20px;"></span></div> </div>
+                <div class="col-6"> <div class="game-card custom-card"><span class="placeholder d-block" style="height: 130px; border-top-left-radius: 8px; border-top-right-radius: 8px;"></span><span class="placeholder d-block mt-2 col-8 mx-auto" style="height: 20px;"></span></div> </div> 
+                <div class="col-6"> <div class="game-card custom-card"><span class="placeholder d-block" style="height: 130px; border-top-left-radius: 8px; border-top-right-radius: 8px;"></span><span class="placeholder d-block mt-2 col-8 mx-auto" style="height: 20px;"></span></div> </div>
             </div>
 
             <!-- My Contests -->
@@ -349,8 +1484,22 @@
 
         <!-- Tournaments Section -->
         <section id="tournaments-section" class="section">
-            <div class="tournament-tabs"> <button class="tab-item active" data-status="upcoming"><i class="bi bi-calendar-event-fill"></i> Upcoming</button> <button class="tab-item" data-status="ongoing"><i class="bi bi-play-circle-fill"></i> Ongoing</button> <button class="tab-item" data-status="completed"><i class="bi bi-trophy-fill"></i> Results</button> </div>
-            <div id="tournamentsListContainerEl" class="mt-3 placeholder-glow"> <div class="tournament-card placeholder-glow mb-3"> <span class="placeholder col-6" style="height: 18px;"></span> <span class="placeholder col-12 mt-2" style="height: 24px;"></span> <span class="placeholder col-10 mt-2" style="height: 16px;"></span> <div class="d-flex justify-content-between mt-3"> <span class="placeholder col-4" style="height: 30px; border-radius: 6px;"></span> <span class="placeholder col-4" style="height: 30px; border-radius: 6px;"></span> </div> </div> </div>
+            <div class="tournament-tabs"> 
+                <button class="tab-item active" data-status="upcoming"><i class="bi bi-calendar-event-fill"></i> Upcoming</button> 
+                <button class="tab-item" data-status="ongoing"><i class="bi bi-play-circle-fill"></i> Ongoing</button> 
+                <button class="tab-item" data-status="completed"><i class="bi bi-trophy-fill"></i> Results</button> 
+            </div>
+            <div id="tournamentsListContainerEl" class="mt-3 placeholder-glow"> 
+                <div class="tournament-card placeholder-glow mb-3"> 
+                    <span class="placeholder col-6" style="height: 18px;"></span> 
+                    <span class="placeholder col-12 mt-2" style="height: 24px;"></span> 
+                    <span class="placeholder col-10 mt-2" style="height: 16px;"></span> 
+                    <div class="d-flex justify-content-between mt-3"> 
+                        <span class="placeholder col-4" style="height: 30px; border-radius: 6px;"></span> 
+                        <span class="placeholder col-4" style="height: 30px; border-radius: 6px;"></span> 
+                    </div> 
+                </div> 
+            </div>
             <p id="noTournamentsMessageEl" class="text-secondary text-center mt-4" style="display: none;">No tournaments found.</p>
         </section>
 
@@ -364,7 +1513,16 @@
                 <button class="btn btn-custom btn-custom-secondary w-100 mt-4" id="addAmountWalletBtnEl"> <i class="bi bi-plus-circle-fill me-2"></i>Add Amount </button>
             </div>
             <h3 class="section-title mt-4">Recent Transactions</h3>
-            <div id="recentTransactionsListEl" class="placeholder-glow"> <div class="custom-card p-2 mb-2 placeholder-glow"> <div class="d-flex justify-content-between"> <span class="placeholder col-5" style="height: 16px;"></span> <span class="placeholder col-3" style="height: 16px;"></span> </div> <div class="small text-secondary mt-1"><span class="placeholder col-6" style="height: 14px;"></span></div> </div> <p class="text-secondary text-center mt-3" id="noTransactionsMessageEl" style="display: none;">Loading transactions...</p> </div>
+            <div id="recentTransactionsListEl" class="placeholder-glow"> 
+                <div class="custom-card p-2 mb-2 placeholder-glow"> 
+                    <div class="d-flex justify-content-between"> 
+                        <span class="placeholder col-5" style="height: 16px;"></span> 
+                        <span class="placeholder col-3" style="height: 16px;"></span> 
+                    </div> 
+                    <div class="small text-secondary mt-1"><span class="placeholder col-6" style="height: 14px;"></span></div> 
+                </div> 
+                <p class="text-secondary text-center mt-3" id="noTransactionsMessageEl" style="display: none;">Loading transactions...</p> 
+            </div>
         </section>
 
         <!-- Earnings Section -->
@@ -380,7 +1538,24 @@
 
         <!-- Profile Section -->
         <section id="profile-section" class="section">
-            <div class="profile-header-card placeholder-glow"> <img src="https://via.placeholder.com/70" alt="Avatar" class="profile-avatar" id="profileAvatarEl"> <h3 class="profile-name mt-2" id="profileNameEl"><span class="placeholder col-6"></span></h3> <p class="profile-email" id="profileEmailEl"><span class="placeholder col-8"></span></p> <div class="profile-stats w-100"> <div class="stat-item"><strong id="profileTotalMatchesEl"><span class="placeholder col-4"></span></strong><span>Matches Played</span></div> <div class="stat-item"><strong id="profileWonMatchesEl"><span class="placeholder col-4"></span></strong><span>Matches Won</span></div> <div class="stat-item"><strong id="profileTotalEarningsEl"><span class="placeholder col-4"></span></strong><span>Total Winnings</span></div> </div> </div>
+            <div class="profile-header-card placeholder-glow" style="position: relative;">
+                <button class="edit-profile-btn" id="editProfileBtnEl"><i class="bi bi-pencil-fill"></i></button>
+                <img src="https://via.placeholder.com/70" alt="Avatar" class="profile-avatar" id="profileAvatarEl"> 
+                <h3 class="profile-name mt-2" id="profileNameEl"><span class="placeholder col-6"></span></h3> 
+                <p class="profile-email" id="profileEmailEl"><span class="placeholder col-8"></span></p> 
+                <div class="profile-stats w-100"> 
+                    <div class="stat-item"><strong id="profileTotalMatchesEl"><span class="placeholder col-4"></span></strong><span>Matches Played</span></div> 
+                    <div class="stat-item"><strong id="profileWonMatchesEl"><span class="placeholder col-4"></span></strong><span>Matches Won</span></div> 
+                    <div class="stat-item"><strong id="profileTotalEarningsEl"><span class="placeholder col-4"></span></strong><span>Total Winnings</span></div> 
+                </div> 
+                <!-- Add Winning Amount Display -->
+                <div class="mt-3 p-3 w-100" style="background: var(--primary-bg); border-radius: 8px;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-secondary">Winning Amount:</span>
+                        <span class="winning-amount" id="profileWinningAmountEl"><span class="placeholder col-3"></span></span>
+                    </div>
+                </div>
+            </div>
             <div class="profile-links">
                 <div class="list-group custom-card">
                     <label class="list-group-item list-group-item-action d-flex justify-content-between align-items-center interactive-list-item"> <span><i class="bi bi-bell-fill"></i> Notifications</span> <div class="form-check form-switch"> <input class="form-check-input" type="checkbox" role="switch" id="notificationSwitchEl" checked> </div> </label>
@@ -398,17 +1573,89 @@
 
     <!-- Modals -->
     <div class="modal fade" id="policyModalEl" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="policyModalTitleEl">Details</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body" id="policyModalBodyEl" style="min-height: 300px;"></div></div></div></div>
-    <div class="modal fade" id="addAmountModalEl" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"><i class="bi bi-wallet-fill me-2"></i> How to Add Amount?</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><p>To add amount, pay via UPI/PhonePe to:</p><p class="text-center text-warning"><strong>UPI ID/Number:</strong> <span class="phonepe-number">[!!! YOUR UPI ID/NUMBER HERE !!!]</span></p><p class="mt-3 small"><strong><i class="bi bi-exclamation-triangle-fill text-warning"></i> IMPORTANT:</strong> After payment, contact admin via [!!! ADMIN CONTACT INFO HERE !!!] with registered Email (<strong id="modalUserEmailEl">...</strong>) & payment screenshot. Amount added manually after verification.</p></div><div class="modal-footer"><button type="button" class="btn btn-custom btn-custom-secondary" data-bs-dismiss="modal">Got it</button></div></div></div></div>
+    
+    <!-- Add Amount Modal - Fixed with QR Code -->
+    <div class="modal fade" id="addAmountModalEl" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="bi bi-wallet-fill me-2"></i> Add Money to Wallet</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="payment-instructions">To add money to your wallet, please scan the QR code below or use the UPI ID:</p>
+                    
+                    <!-- QR Code Section -->
+                    <div class="qr-code-container">
+                        <div id="qrCodeImageContainer">
+                            <img id="qrCodeImageEl" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=YOUR_UPI_ID&pn=Gaming%20Tournament&am=&cu=INR" alt="QR Code for UPI Payment" class="qr-code-image">
+                        </div>
+                        <p class="mt-3"><strong>UPI ID:</strong> <span class="phonepe-number" id="upiIdDisplay">[!!! YOUR UPI ID/NUMBER HERE !!!]</span></p>
+                    </div>
+                    
+                    <div class="payment-instructions">
+                        <p><strong><i class="bi bi-exclamation-triangle-fill text-warning"></i> IMPORTANT:</strong></p>
+                        <ol class="small">
+                            <li>Scan the QR code or send money to the UPI ID above</li>
+                            <li>After payment, contact admin via <span id="adminContactDisplay">[!!! ADMIN CONTACT INFO HERE !!!]</span></li>
+                            <li>Provide your registered email (<strong id="modalUserEmailEl">...</strong>) and payment screenshot</li>
+                            <li>Amount will be added manually after verification</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom btn-custom-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-custom btn-custom-primary" id="copyUpiIdBtnEl">Copy UPI ID</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="modal fade" id="withdrawModalEl" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"><i class="bi bi-cash-coin me-2"></i> Withdraw Funds</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><p class="small text-secondary">Withdrawable balance: <strong class="text-light" id="withdrawModalBalanceEl">₹0.00</strong></p><div class="mb-3"><label for="withdrawAmountInputEl" class="form-label">Amount (Min ₹<span id="minWithdrawAmountEl">50</span>)</label><input type="number" class="form-control" id="withdrawAmountInputEl" placeholder="Enter amount"></div><div class="mb-3"><label for="withdrawMethodInputEl" class="form-label">Withdrawal Method (UPI/Bank)</label><input type="text" class="form-control" id="withdrawMethodInputEl" placeholder="Enter UPI ID / Bank Details"></div><div id="withdrawStatusMessageEl" class="alert mt-3" style="display: none;"></div></div><div class="modal-footer"><button type="button" class="btn btn-custom btn-custom-secondary" data-bs-dismiss="modal">Cancel</button><button type="button" class="btn btn-custom btn-custom-primary" id="submitWithdrawRequestBtnEl">Submit Request</button></div></div></div></div>
     <div class="modal fade" id="matchDetailsModalEl" tabindex="-1"><div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="matchDetailsModalTitleEl">Match Details</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body" id="matchDetailsModalBodyEl"></div></div></div></div>
     <div class="modal fade" id="idPasswordModalEl" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Room ID & Password</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body text-center"><p class="small text-secondary">ID/Pass shown shortly before match start.</p><div class="my-3 p-3" style="background: var(--primary-bg); border-radius: 8px;"><p class="mb-1">Room ID:</p><h4 id="roomIdDisplayEl" class="text-accent referral-code placeholder-glow d-inline-block"><span class="placeholder col-6"></span></h4><button class="btn btn-sm btn-outline-warning ms-2 copy-btn" data-target="#roomIdDisplayEl" title="Copy Room ID"><i class="bi bi-clipboard"></i></button></div><div class="my-3 p-3" style="background: var(--primary-bg); border-radius: 8px;"><p class="mb-1">Password:</p><h4 id="roomPasswordDisplayEl" class="text-accent referral-code placeholder-glow d-inline-block"><span class="placeholder col-6"></span></h4><button class="btn btn-sm btn-outline-warning ms-2 copy-btn" data-target="#roomPasswordDisplayEl" title="Copy Password"><i class="bi bi-clipboard"></i></button></div><p class="small text-warning"><i class="bi bi-exclamation-triangle"></i> Don't share ID/Password.</p></div></div></div></div>
-
+    
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editProfileModalEl" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="bi bi-person-fill me-2"></i> Edit Profile</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 text-center">
+                        <img src="https://via.placeholder.com/80" alt="Avatar" class="profile-avatar mb-2" id="editProfileAvatarEl" style="width: 80px; height: 80px;">
+                        <button class="btn btn-sm btn-custom btn-custom-secondary" id="changeAvatarBtnEl">Change Photo</button>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProfileNameInputEl" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="editProfileNameInputEl" placeholder="Your Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProfileEmailInputEl" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="editProfileEmailInputEl" placeholder="Email" readonly>
+                        <div class="form-text text-secondary">Email cannot be changed</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProfilePhoneInputEl" class="form-label">Phone Number (Optional)</label>
+                        <input type="tel" class="form-control" id="editProfilePhoneInputEl" placeholder="Phone Number">
+                    </div>
+                    <div id="editProfileStatusMessageEl" class="alert mt-3" style="display: none;"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom btn-custom-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-custom btn-custom-primary" id="saveProfileBtnEl">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
         <button class="nav-item" data-section="home-section"><i class="bi bi-house-door-fill"></i><span>Home</span></button>
+        <button class="nav-item" data-section="tournaments-section"><i class="bi bi-trophy-fill"></i><span>Tournaments</span></button>
         <button class="nav-item" data-section="wallet-section"><i class="bi bi-wallet-fill"></i><span>Wallet</span></button>
-        <button class="nav-item" data-section="earnings-section"><i class="bi bi-coin"></i><span>Earnings</span></button>
         <button class="nav-item" data-section="profile-section"><i class="bi bi-person-fill"></i><span>Profile</span></button>
     </nav>
 
@@ -421,30 +1668,22 @@
         // Firebase Imports
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getDatabase, ref, get, set, update, push, query, orderByChild, equalTo, onValue, runTransaction, off, limitToLast, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
-        // ===============================================================
-        // ================= !!! IMPORTANT !!! ===========================
-        // Replace the placeholder values below with your actual Firebase project configuration.
-        // ===============================================================
+        // Firebase Configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyC_B6ZduTIjfxoPSDHajSPGQXANuf9VByk", // Replace with your actual API key
-            authDomain: "tornament-4aa26.firebaseapp.com", // Replace YOUR_PROJECT_ID
-            databaseURL: "https://tornament-4aa26-default-rtdb.firebaseio.com", // Replace YOUR_PROJECT_ID (check region if needed)
-            projectId: "tornament-4aa26", // Replace with your actual Project ID
-            storageBucket: "tornament-4aa26.firebasestorage.app", // Replace YOUR_PROJECT_ID
-            messagingSenderId: "462695574159", // Replace with your actual Sender ID
-            appId: "1:462695574159:web:329d610d5c72dba2091efa", // Replace with your actual App ID
-            measurementId: "YOUR_MEASUREMENT_ID" // Optional: Replace if you use Google Analytics
+            apiKey: "AIzaSyC_B6ZduTIjfxoPSDHajSPGQXANuf9VByk",
+            authDomain: "tornament-4aa26.firebaseapp.com",
+            databaseURL: "https://tornament-4aa26-default-rtdb.firebaseio.com",
+            projectId: "tornament-4aa26",
+            storageBucket: "tornament-4aa26.firebasestorage.app",
+            messagingSenderId: "462695574159",
+            appId: "1:462695574159:web:329d610d5c72dba2091efa"
         };
-        // ===============================================================
 
         // Initialize Firebase
         let app, db, auth;
         try {
-            if (firebaseConfig.apiKey === "YOUR_API_KEY" || firebaseConfig.projectId === "YOUR_PROJECT_ID") {
-                console.warn("Firebase config using placeholder values. Replace them with your actual project details.");
-            }
             app = initializeApp(firebaseConfig);
             db = getDatabase(app);
             auth = getAuth(app);
@@ -481,6 +1720,7 @@
             loginStatusMessage: getElement('loginStatusMessageEl'),
             forgotPasswordLink: getElement('forgotPasswordLinkEl'),
             emailSignupForm: getElement('emailSignupForm'),
+            signupNameInput: getElement('signupNameInputEl'),
             signupEmailInput: getElement('signupEmailInputEl'),
             signupPasswordInput: getElement('signupPasswordInputEl'),
             signupConfirmPasswordInput: getElement('signupConfirmPasswordInputEl'),
@@ -517,7 +1757,9 @@
             profileTotalMatches: getElement('profileTotalMatchesEl'), 
             profileWonMatches: getElement('profileWonMatchesEl'), 
             profileTotalEarnings: getElement('profileTotalEarningsEl'), 
+            profileWinningAmount: getElement('profileWinningAmountEl'), // NEW: Winning amount in profile
             logoutProfileBtn: getElement('logoutProfileBtnEl'), 
+            editProfileBtn: getElement('editProfileBtnEl'),
             policyLinks: querySelAll('.profile-links a[data-policy], .profile-links button[data-policy]'), 
             notificationSwitch: getElement('notificationSwitchEl'),
             policyModalInstance: getElement('policyModalEl') ? new bootstrap.Modal(getElement('policyModalEl')) : null, 
@@ -538,7 +1780,20 @@
             idPasswordModalInstance: getElement('idPasswordModalEl') ? new bootstrap.Modal(getElement('idPasswordModalEl')) : null, 
             roomIdDisplay: getElement('roomIdDisplayEl'), 
             roomPasswordDisplay: getElement('roomPasswordDisplayEl'),
-            securityWarning: getElement('securityWarning')
+            editProfileModalInstance: getElement('editProfileModalEl') ? new bootstrap.Modal(getElement('editProfileModalEl')) : null,
+            editProfileAvatar: getElement('editProfileAvatarEl'),
+            editProfileNameInput: getElement('editProfileNameInputEl'),
+            editProfileEmailInput: getElement('editProfileEmailInputEl'),
+            editProfilePhoneInput: getElement('editProfilePhoneInputEl'),
+            editProfileStatusMessage: getElement('editProfileStatusMessageEl'),
+            saveProfileBtn: getElement('saveProfileBtnEl'),
+            changeAvatarBtn: getElement('changeAvatarBtnEl'),
+            securityWarning: getElement('securityWarning'),
+            qrCodeImage: getElement('qrCodeImageEl'),
+            upiIdDisplay: getElement('upiIdDisplay'),
+            adminContactDisplay: getElement('adminContactDisplay'),
+            copyUpiIdBtn: getElement('copyUpiIdBtnEl'),
+            refreshDataBtn: getElement('refreshDataBtnEl')
         };
 
         // --- App State ---
@@ -550,6 +1805,21 @@
         let currentTournamentGameId = null;
         let appSettings = {};
         let validReferrerUid = null;
+        
+        // Performance optimization - Debounce function
+        function debounce(func, wait, immediate) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    timeout = null;
+                    if (!immediate) func(...args);
+                };
+                const callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func(...args);
+            };
+        }
 
         // --- Utility Functions ---
         const showLoader = (show) => {
@@ -646,7 +1916,12 @@
         const removePlaceholders = (parentElement) => {
             if (!parentElement) return;
             parentElement.classList.remove('placeholder-glow');
-            parentElement.querySelectorAll('.placeholder').forEach(el => el.remove());
+            const placeholders = parentElement.querySelectorAll('.placeholder');
+            placeholders.forEach(el => {
+                if (el.parentNode) {
+                    el.parentNode.removeChild(el);
+                }
+            });
         };
 
         // --- UI Functions ---
@@ -765,6 +2040,11 @@
                 const section = item.dataset.section;
                 item.style.display = (section === 'home-section' || isLoggedIn) ? 'flex' : 'none';
             });
+            
+            // Show refresh button only when logged in
+            if (elements.refreshDataBtn) {
+                elements.refreshDataBtn.style.display = isLoggedIn ? 'block' : 'none';
+            }
         }
 
         function populateUserInfo(user, profile) {
@@ -772,9 +2052,12 @@
             
             const displayName = profile.displayName || user.displayName || user.email?.split('@')[0] || 'User';
             const photoURL = profile.photoURL || user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=0F172A&color=E2E8F0&bold=true&size=70`;
-            const balance = (profile.balance || 0);
-            const winningCash = (profile.winningCash || 0);
-            const bonusCash = (profile.bonusCash || 0);
+            
+            // FIXED: Calculate total balance correctly
+            const winningCash = parseFloat(profile.winningCash || 0);
+            const bonusCash = parseFloat(profile.bonusCash || 0);
+            const totalBalance = winningCash + bonusCash;
+            
             const totalEarnings = (profile.totalEarnings || 0);
             const referralEarnings = (profile.referralEarnings || 0);
             const totalMatches = profile.totalMatches || 0;
@@ -783,10 +2066,10 @@
             const formatCurrency = (amount) => `₹${amount.toFixed(2)}`;
             
             if (elements.headerUserGreeting) elements.headerUserGreeting.textContent = displayName.split(' ')[0];
-            if (elements.headerChipBalance) elements.headerChipBalance.textContent = Math.floor(balance);
+            if (elements.headerChipBalance) elements.headerChipBalance.textContent = Math.floor(totalBalance);
             
             if (elements.walletTotalBalance) {
-                elements.walletTotalBalance.textContent = formatCurrency(balance);
+                elements.walletTotalBalance.textContent = formatCurrency(totalBalance);
                 removePlaceholders(elements.walletTotalBalance.closest('.placeholder-glow'));
             }
             
@@ -829,6 +2112,12 @@
                 removePlaceholders(elements.profileTotalEarnings.closest('.placeholder-glow'));
             }
             
+            // NEW: Show winning amount in profile
+            if (elements.profileWinningAmount) {
+                elements.profileWinningAmount.textContent = formatCurrency(winningCash);
+                removePlaceholders(elements.profileWinningAmount.closest('.placeholder-glow'));
+            }
+            
             if (elements.earningsTotal) {
                 elements.earningsTotal.textContent = formatCurrency(totalEarnings);
                 removePlaceholders(elements.earningsTotal.closest('.placeholder-glow'));
@@ -859,13 +2148,14 @@
         async function signUpWithEmail() {
             if (!auth) return;
             
+            const name = elements.signupNameInput.value.trim();
             const email = elements.signupEmailInput.value.trim();
             const password = elements.signupPasswordInput.value;
             const confirmPassword = elements.signupConfirmPasswordInput.value;
             const referralCode = elements.signupReferralCodeInput.value.trim();
 
-            if (!email || !password || !confirmPassword) {
-                showStatusMessage(elements.signupStatusMessage, 'Fill required fields.', 'warning');
+            if (!name || !email || !password || !confirmPassword) {
+                showStatusMessage(elements.signupStatusMessage, 'Fill all required fields.', 'warning');
                 return;
             }
             
@@ -908,7 +2198,12 @@
                 }
 
                 // Create the user
-                await createUserWithEmailAndPassword(auth, email, password);
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                
+                // Update profile with name
+                await updateProfile(userCredential.user, {
+                    displayName: name
+                });
                 
             } catch (error) {
                 console.error("Signup Error:", error);
@@ -1085,7 +2380,7 @@
                             photoURL: user.photoURL || null,
                             balance: appSettings.newUserBalance || 0,
                             winningCash: 0,
-                            bonusCash: appSettings.newUserBonus || 0,
+                            bonusCash: appSettings.newUserBonus || 50, // FIXED: Set default bonus cash to 50
                             totalMatches: 0,
                             wonMatches: 0,
                             totalEarnings: 0,
@@ -1113,7 +2408,6 @@
                             try {
                                 const referrerUpdateResult = await runTransaction(referrerRef, (referrerData) => {
                                     if (referrerData) {
-                                        referrerData.balance = (referrerData.balance || 0) + appSettings.referralBonus;
                                         referrerData.bonusCash = (referrerData.bonusCash || 0) + appSettings.referralBonus;
                                         referrerData.referralEarnings = (referrerData.referralEarnings || 0) + appSettings.referralBonus;
                                     }
@@ -1185,14 +2479,25 @@
                         elements.minWithdrawAmount.textContent = appSettings.minWithdraw;
                     }
 
-                    const upiIdEl = document.querySelector('.phonepe-number');
-                    if (upiIdEl) {
-                        upiIdEl.textContent = appSettings.upiDetails || '[!!! YOUR UPI ID/NUMBER HERE !!!]';
+                    // Update UPI details in the add amount modal
+                    if (appSettings.upiDetails && elements.upiIdDisplay) {
+                        elements.upiIdDisplay.textContent = appSettings.upiDetails;
+                        
+                        // Update QR code with the actual UPI ID
+                        if (elements.qrCodeImage) {
+                            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=${encodeURIComponent(appSettings.upiDetails)}&pn=Gaming%20Tournament&am=&cu=INR`;
+                            elements.qrCodeImage.src = qrCodeUrl;
+                        }
                     }
                     
-                    const contactInfoPEl = document.querySelector('.modal-body p strong#modalUserEmailEl')?.closest('p');
-                    if (contactInfoPEl && appSettings.supportContact) {
-                        contactInfoPEl.innerHTML = contactInfoPEl.innerHTML.replace('[!!! ADMIN CONTACT INFO HERE !!!]', appSettings.supportContact);
+                    // Update admin contact info
+                    if (appSettings.supportContact && elements.adminContactDisplay) {
+                        elements.adminContactDisplay.textContent = appSettings.supportContact;
+                    }
+                    
+                    // Check for custom QR code URL
+                    if (appSettings.qrCodeUrl && elements.qrCodeImage) {
+                        elements.qrCodeImage.src = appSettings.qrCodeUrl;
                     }
                     
                 } else {
@@ -1328,7 +2633,7 @@
                         col.className = 'col-6';
                         col.innerHTML = `
                             <div class="game-card custom-card" data-game-id="${gameId}" data-game-name="${game.name}">
-                                <img src="${game.imageUrl}" alt="${game.name}">
+                                <img src="${game.imageUrl}" alt="${game.name}" class="lazy-load" onload="this.classList.add('lazy-loaded')">
                                 <span>${game.name}</span>
                             </div>
                         `;
@@ -1452,6 +2757,21 @@
             
             let actionButton = '';
             let idPassButton = '';
+            let winnerSection = '';
+            
+            // Add winner section for completed tournaments
+            if (tournament.status === 'completed' && tournament.winner) {
+                const winner = tournament.winner;
+                winnerSection = `
+                    <div class="tournament-winner">
+                        <i class="bi bi-trophy-fill tournament-winner-icon"></i>
+                        <div class="tournament-winner-details">
+                            <div class="tournament-winner-name">Winner: ${winner.name || 'Unknown'}</div>
+                            <div class="tournament-winner-prize">Prize: ₹${winner.prize || prizePool}</div>
+                        </div>
+                    </div>
+                `;
+            }
             
             if (isJoined) {
                 actionButton = `<button class="btn btn-custom btn-sm btn-joined" disabled><i class="bi bi-check-circle-fill"></i> Joined</button>`;
@@ -1505,6 +2825,7 @@
                     ${actionButton}
                 </div>
                 ${idPassButton}
+                ${winnerSection}
             `;
             
             const joinBtn = card.querySelector('.btn-join');
@@ -1628,6 +2949,7 @@
                 removePlaceholders(elements.profileTotalMatches?.closest('.placeholder-glow'));
                 removePlaceholders(elements.profileWonMatches?.closest('.placeholder-glow'));
                 removePlaceholders(elements.profileTotalEarnings?.closest('.placeholder-glow'));
+                removePlaceholders(elements.profileWinningAmount?.closest('.placeholder-glow'));
             }
         }
 
@@ -1772,7 +3094,12 @@
                         throw new Error("User profile missing.");
                     }
                     
-                    if ((profileData.balance || 0) < fee) {
+                    // FIXED: Calculate total balance correctly
+                    const winningCash = parseFloat(profileData.winningCash || 0);
+                    const bonusCash = parseFloat(profileData.bonusCash || 0);
+                    const totalBalance = winningCash + bonusCash;
+                    
+                    if (totalBalance < fee) {
                         throw new Error("Insufficient balance.");
                     }
                     
@@ -1781,8 +3108,20 @@
                         return; // Abort transaction
                     }
                     
-                    // Deduct balance
-                    profileData.balance = (profileData.balance || 0) - fee;
+                    // FIXED: Deduct from bonus cash first, then winning cash
+                    let remainingFee = fee;
+                    
+                    // First use bonus cash
+                    if (bonusCash > 0) {
+                        const bonusDeduction = Math.min(remainingFee, bonusCash);
+                        profileData.bonusCash = bonusCash - bonusDeduction;
+                        remainingFee -= bonusDeduction;
+                    }
+                    
+                    // Then use winning cash if needed
+                    if (remainingFee > 0) {
+                        profileData.winningCash = winningCash - remainingFee;
+                    }
                     
                     // Mark as joined
                     if (!profileData.joinedTournaments) {
@@ -1894,7 +3233,22 @@
                     try {
                         const refundTransaction = await runTransaction(userRef, (profileData) => {
                             if (profileData) {
-                                profileData.balance = (profileData.balance || 0) + fee;
+                                // FIXED: Refund to the correct wallet (bonus cash first, then winning cash)
+                                let remainingRefund = fee;
+                                
+                                // First refund to winning cash if it was used
+                                const winningCashUsed = Math.min(fee, (parseFloat(profileData.winningCash || 0) < (userProfile.winningCash || 0) ? 
+                                    (userProfile.winningCash || 0) - (profileData.winningCash || 0) : 0));
+                                
+                                if (winningCashUsed > 0) {
+                                    profileData.winningCash = (profileData.winningCash || 0) + winningCashUsed;
+                                    remainingRefund -= winningCashUsed;
+                                }
+                                
+                                // Then refund to bonus cash
+                                if (remainingRefund > 0) {
+                                    profileData.bonusCash = (profileData.bonusCash || 0) + remainingRefund;
+                                }
                                 
                                 if (profileData.joinedTournaments?.[tournamentId]) {
                                     delete profileData.joinedTournaments[tournamentId];
@@ -2286,6 +3640,80 @@
             elements.policyModalInstance.show();
         }
 
+        // --- Edit Profile Functions ---
+        function handleEditProfileClick() {
+            if (!currentUser || !elements.editProfileModalInstance) return;
+            
+            // Populate the form with current user data
+            elements.editProfileNameInput.value = userProfile.displayName || '';
+            elements.editProfileEmailInput.value = currentUser.email || '';
+            elements.editProfilePhoneInput.value = userProfile.phoneNumber || '';
+            elements.editProfileAvatar.src = userProfile.photoURL || elements.profileAvatar.src;
+            
+            clearStatusMessage(elements.editProfileStatusMessage);
+            elements.editProfileModalInstance.show();
+        }
+
+        async function handleSaveProfileClick() {
+            if (!currentUser) return;
+            
+            const newName = elements.editProfileNameInput.value.trim();
+            const phoneNumber = elements.editProfilePhoneInput.value.trim();
+            
+            if (!newName) {
+                showStatusMessage(elements.editProfileStatusMessage, 'Name is required.', 'warning');
+                return;
+            }
+            
+            elements.saveProfileBtn.disabled = true;
+            elements.saveProfileBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Saving...';
+            
+            try {
+                const updates = {};
+                
+                // Update display name if changed
+                if (newName !== userProfile.displayName) {
+                    updates.displayName = newName;
+                    
+                    // Also update Firebase Auth display name
+                    await updateProfile(currentUser, {
+                        displayName: newName
+                    });
+                }
+                
+                // Update phone number if changed
+                if (phoneNumber !== userProfile.phoneNumber) {
+                    updates.phoneNumber = phoneNumber;
+                }
+                
+                // Update database if there are changes
+                if (Object.keys(updates).length > 0) {
+                    const userRef = ref(db, `users/${currentUser.uid}`);
+                    await update(userRef, updates);
+                    
+                    // Update local profile
+                    userProfile = { ...userProfile, ...updates };
+                    
+                    // Update UI
+                    populateUserInfo(currentUser, userProfile);
+                    
+                    showStatusMessage(elements.editProfileStatusMessage, 'Profile updated successfully!', 'success');
+                    
+                    setTimeout(() => {
+                        elements.editProfileModalInstance.hide();
+                    }, 1500);
+                } else {
+                    showStatusMessage(elements.editProfileStatusMessage, 'No changes to save.', 'info');
+                }
+            } catch (error) {
+                console.error("Profile update error:", error);
+                showStatusMessage(elements.editProfileStatusMessage, `Error: ${error.message}`, 'danger');
+            } finally {
+                elements.saveProfileBtn.disabled = false;
+                elements.saveProfileBtn.innerHTML = 'Save Changes';
+            }
+        }
+
         // --- Realtime Listeners Setup ---
         function setupRealtimeListeners(uid) {
             if (!uid || !db || !currentUser) return;
@@ -2365,6 +3793,44 @@
             }
         }
 
+        // --- Data Refresh Function ---
+        function refreshData() {
+            if (!currentUser) return;
+            
+            console.log("Manual data refresh triggered");
+            showLoader(true);
+            
+            // Force reload current section data
+            switch (currentSectionId) {
+                case 'home-section': 
+                    loadHomePageData(); 
+                    break;
+                case 'wallet-section': 
+                    loadWalletData(); 
+                    break;
+                case 'profile-section': 
+                    loadProfileData(); 
+                    break;
+                case 'earnings-section': 
+                    loadEarningsData(); 
+                    break;
+                case 'tournaments-section':
+                    if (currentTournamentGameId) {
+                        const activeTab = querySel('.tournament-tabs .tab-item.active')?.dataset.status || 'upcoming';
+                        filterTournaments(currentTournamentGameId, activeTab);
+                    }
+                    break;
+            }
+            
+            // Also reload app settings in case they changed
+            loadAppSettings();
+            
+            setTimeout(() => {
+                showLoader(false);
+                alert("Data refreshed successfully!");
+            }, 1000);
+        }
+
         // --- Event Listeners Initialization ---
         function initializeEventListeners() {
             if (!elements) return;
@@ -2406,6 +3872,12 @@
 
             // Profile Actions
             elements.logoutProfileBtn?.addEventListener('click', logoutUser);
+            elements.editProfileBtn?.addEventListener('click', handleEditProfileClick);
+            elements.saveProfileBtn?.addEventListener('click', handleSaveProfileClick);
+            elements.changeAvatarBtn?.addEventListener('click', () => {
+                alert('Avatar change functionality will be implemented in the next version.');
+            });
+            
             elements.policyLinks?.forEach(link => {
                 link.addEventListener('click', handlePolicyClick);
             });
@@ -2429,11 +3901,15 @@
             });
             
             elements.submitWithdrawRequestBtn?.addEventListener('click', submitWithdrawRequestHandler);
+            elements.copyUpiIdBtn?.addEventListener('click', () => {
+                copyToClipboard('#upiIdDisplay');
+            });
 
             // Other Actions
             elements.notificationBtn?.addEventListener('click', () => alert('Notifications coming soon!'));
             elements.allTransactionsBtn?.addEventListener('click', () => alert('Transaction history page coming soon!'));
             elements.viewEarningsHistoryBtn?.addEventListener('click', () => alert('Earnings history coming soon!'));
+            elements.refreshDataBtn?.addEventListener('click', refreshData);
 
             // Delegated Event Listener for Copy/Share buttons
             document.body.addEventListener('click', (event) => {
